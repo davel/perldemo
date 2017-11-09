@@ -38,8 +38,6 @@ my $star_data = join(", ", map {
 } 1..$stars);
 
 glShaderSourceARB_p($frag_shader, qq{#version 120
-varying vec3 Position;
-
 uniform vec3 stars[$stars] = vec3[$stars]( $star_data );
 
 void main() {
