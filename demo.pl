@@ -54,7 +54,6 @@ void main() {
             0.0, 1.0
         );
     }
-    bright = clamp(bright, 0.0, 1.0);
     gl_FragColor = vec4(bright, bright, bright, bright);
 }
 
