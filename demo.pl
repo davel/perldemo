@@ -82,7 +82,7 @@ my $offset = 0;
 while (1) {
     glutMainLoopEvent();
 
-    $offset += 1/(2**11);
+    $offset += 1/(2**13);
     $offset = $offset > 1 ? $offset-1 : $offset;
 
     glutPostRedisplay();
