@@ -16,8 +16,6 @@ glutReshapeFunc(\&resize);
 my $vertex_shader = glCreateShaderObjectARB( GL_VERTEX_SHADER );
 
 glShaderSourceARB_p($vertex_shader, q{
-
-
 void main() {
     gl_FrontColor = gl_Color;
     gl_Position = ftransform();
@@ -46,12 +44,17 @@ uniform vec3 stars[$stars] = vec3[$stars]( $star_data );
 
 void main() {
     float bright = 0;
-
     float shift = gl_Color.z;
 
     for (int n = 0; n<$stars; n++) {
-        float d = distance(vec2(fract(gl_Color.x+10*shift / stars[n].z), gl_Color.y), vec2(stars[n].x, stars[n].y));
-        bright += clamp((1.0-d*500)/stars[n].z, 0.0, 1.0);
+        float d = distance(
+            vec2(fract(gl_Color.x+10*shift / stars[n].z), gl_Color.y),
+            vec2(stars[n].x, stars[n].y)
+        );
+        bright += clamp(
+            (1.0-d*500)/stars[n].z,
+            0.0, 1.0
+        );
     }
     bright = clamp(bright, 0.0, 1.0);
     gl_FragColor = vec4(bright, bright, bright, bright);
@@ -82,7 +85,7 @@ my $offset = 0;
 while (1) {
     glutMainLoopEvent();
 
-    $offset += 1/(2**10);
+    $offset += 1/(2**11);
     $offset = $offset > 1 ? $offset-1 : $offset;
 
     glutPostRedisplay();
