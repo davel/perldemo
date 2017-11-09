@@ -38,25 +38,24 @@ my $star_data = join(", ", map {
 } 1..$stars);
 
 glShaderSourceARB_p($frag_shader, qq{#version 120
-uniform vec3 stars[$stars] = vec3[$stars]( $star_data );
+    uniform vec3 stars[$stars] = vec3[$stars]( $star_data );
 
-void main() {
-    float bright = 0;
-    float shift = gl_Color.z;
+    void main() {
+        float bright = 0;
+        float shift = gl_Color.z;
 
-    for (int n = 0; n<$stars; n++) {
-        float d = distance(
-            vec2(fract(gl_Color.x+10*shift / stars[n].z), gl_Color.y),
-            vec2(stars[n].x, stars[n].y)
-        );
-        bright += clamp(
-            (1.0-d*500)/stars[n].z,
-            0.0, 1.0
-        );
+        for (int n = 0; n<$stars; n++) {
+            float d = distance(
+                vec2(fract(gl_Color.x+10*shift / stars[n].z), gl_Color.y),
+                vec2(stars[n].x, stars[n].y)
+            );
+            bright += clamp(
+                (1.0-d*500)/stars[n].z,
+                0.0, 1.0
+            );
+        }
+        gl_FragColor = vec4(bright, bright, bright, bright);
     }
-    gl_FragColor = vec4(bright, bright, bright, bright);
-}
-
 });
 
 glCompileShaderARB($frag_shader);
