@@ -93,7 +93,7 @@ sub display {
 sub resize {
     my ($w, $h) = @_;
 
-    print "Rizing $w $h\n";
+    print "Resizing $w $h\n";
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
     glViewport(0, 0, $w, $h);
