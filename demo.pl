@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use OpenGL qw/ :glufunctions :glutfunctions :glconstants :glfunctions :glutconstants /;
 
-my $stars = 50;
+my $stars = 100;
 
 glutInit();
 glutInitDisplayMode( GLUT_DOUBLE );
@@ -108,7 +108,7 @@ sub display {
 sub resize {
     my ($w, $h) = @_;
 
-    print "Rizing $w $h\n";
+    print "Resizing $w $h\n";
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
     glViewport(0, 0, $w, $h);
